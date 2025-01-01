@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Website Header</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 15px;
+            display: inline-block;
+        }
+
+        .nav-item a:hover {
+            background-color: #575757;
+            border-radius: 5px;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #444;
+            min-width: 150px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 10px 15px;
+            color: #fff;
+        }
+
+        .dropdown a:hover {
+            background-color: #575757;
+        }
+
+        .nav-item:hover .dropdown {
+            display: block;
+        }
+
+        .header .cta {
+            background-color: #ff6600;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .header .cta:hover {
+            background-color: #e65c00;
+        }
+
+         .menu-icon{
+            display: none;
+        } 
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .menu-icon {
+                display: block;
+                cursor: pointer;
+                font-size: 24px;
+                color: #fff;
+                margin-left: 400px;
+            }
+
+            .nav {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+                display: none;
+            }
+
+            .nav.active {
+                display: flex;
+            }
+
+            .nav-item a {
+                width: 100%;
+            }
+
+            .dropdown {
+                position: static;
+                box-shadow: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 10px 20px;
+            }
+
+            .header .logo {
+                font-size: 20px;
+            }
+
+            .header .cta {
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">MySite</div>
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+        <nav class="nav">
+            <div class="nav-item">
+                <a href="#">Home</a>
+            </div>
+            <div class="nav-item">
+                <a href="#">About</a>
+                <div class="dropdown">
+                    <a href="#">Our Team</a>
+                    <a href="#">Our Story</a>
+                    <a href="#">Careers</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#">Services</a>
+                <div class="dropdown">
+                    <a href="#">Web Development</a>
+                    <a href="#">SEO Optimization</a>
+                    <a href="#">Consulting</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#">Contact</a>
+            </div>
+        </nav>
+        <a href="#" class="cta">Sign Up</a>
+    </header>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('.nav');
+            const menuIcon = document.querySelector('.menu-icon');
+            nav.classList.toggle('active');
+            if (nav.classList.contains('active')) {
+                menuIcon.innerHTML = '&#10005;'; // X (Cancel) icon
+            } else {
+                menuIcon.innerHTML = '&#9776;'; // Hamburger icon
+            }
+        }
+    </script>
+</body>
+</html>
